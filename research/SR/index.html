@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>experience-待完善 | 欢迎来到张力飞的个人主页</title>
+  <title>基于GAN的零样本遥感影像超分辨率重建研究 | 欢迎来到张力飞的个人主页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="experience-待完善">
+  <meta name="description" content="1. 简介星载遥感成像系统在成像过程中受到了多方面降质因素的影响，使得最终获得的卫星影像存在空间分辨率降低的现象，在一定程度上限制了卫星影像数据的应用。本文基于深度学习的方法，将影像超分看作图像翻译问题，利用循环一致性生成对抗网络（CycleGAN, Cycle-Consistent Generative Adversarial Networks）实现零样本遥感影像超分辨率重建任务，旨在解决训练样">
+<meta property="og:type" content="website">
+<meta property="og:title" content="基于GAN的零样本遥感影像超分辨率重建研究">
 <meta property="og:url" content="http://yoursite.com/research/SR/index.html">
 <meta property="og:site_name" content="欢迎来到张力飞的个人主页">
+<meta property="og:description" content="1. 简介星载遥感成像系统在成像过程中受到了多方面降质因素的影响，使得最终获得的卫星影像存在空间分辨率降低的现象，在一定程度上限制了卫星影像数据的应用。本文基于深度学习的方法，将影像超分看作图像翻译问题，利用循环一致性生成对抗网络（CycleGAN, Cycle-Consistent Generative Adversarial Networks）实现零样本遥感影像超分辨率重建任务，旨在解决训练样">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-21T12:42:10.000Z">
-<meta property="article:modified_time" content="2020-06-22T04:58:01.738Z">
+<meta property="og:image" content="http://yoursite.com/research/SR/1.jpg">
+<meta property="og:image" content="http://yoursite.com/research/SR/2.png">
+<meta property="og:image" content="http://yoursite.com/research/SR/3.png">
+<meta property="article:published_time" content="2020-06-23T03:29:34.357Z">
+<meta property="article:modified_time" content="2020-06-23T03:29:34.357Z">
 <meta property="article:author" content="张力飞">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/research/SR/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到张力飞的个人主页" type="application/atom+xml">
   
@@ -169,20 +175,43 @@
         
   
     <h1 class="article-title" itemprop="name">
-      experience-待完善
+      基于GAN的零样本遥感影像超分辨率重建研究
     </h1>
   
 
         
         <a href="/research/SR/index.html" class="archive-article-date">
-  	<time datetime="2020-06-21T12:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+  	<time datetime="2020-06-23T03:29:34.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>星载遥感成像系统在成像过程中受到了多方面降质因素的影响，使得最终获得的卫星影像存在空间分辨率降低的现象，在一定程度上限制了卫星影像数据的应用。本文基于深度学习的方法，将影像超分看作图像翻译问题，利用循环一致性生成对抗网络（CycleGAN, Cycle-Consistent Generative Adversarial Networks）实现零样本遥感影像超分辨率重建任务，旨在解决训练样本完全缺失问题。利用测试影像，通过放大原始图像，构建非配对高低分辨率图像，完成数据集构建。利用构建的数据集，对CycleGAN 网络进行训练，获得最终超分辨率模型。在遥感影像上进行实验，获得优于opencv 锐化处理的效果。</p>
+<h2 id="2-方法原理"><a href="#2-方法原理" class="headerlink" title="2. 方法原理"></a>2. 方法原理</h2><h3 id="2-1-基于测试样本的非配对训练数据集的构造"><a href="#2-1-基于测试样本的非配对训练数据集的构造" class="headerlink" title="2.1 基于测试样本的非配对训练数据集的构造"></a>2.1 基于测试样本的非配对训练数据集的构造</h3><p>为了定义出低分辨率和高分辨率影像，采用双三次插值方法，对待提高的影像进行放大处理。放大处理的影像定义为低分辨率域，放大之前的影像定义为高分辨率域。如图1所示：</p>
+<div align="center">
+  <img width="500" src="/research/SR/1.jpg">
+</div>
+<center>图１ 非配对训练数据构造示意图</center>
+
+<p>左边为处理前宽高为w,h的图像，定义为高分（辨率）域。在处理前的图像中随机裁剪宽高为w/2,h/2的图像块，对裁剪的图像块采用双三次插值进行2倍放大，获得相应的放大影像，定义为低分（辨率）域。对于待超分的卫星影像按上述方法处理，可获得网络模型训练所需的3037对非配对图像对训练数据集。</p>
+<h3 id="2-2-引入梯度惩罚的CycleGAN-网络架构"><a href="#2-2-引入梯度惩罚的CycleGAN-网络架构" class="headerlink" title="2.2 引入梯度惩罚的CycleGAN 网络架构"></a>2.2 引入梯度惩罚的CycleGAN 网络架构</h3><p>CycleGAN是生成式对抗网络的一种，由两个生成网络和两个判别网络构成，并引入循环一致损失。CycleGAN在非配对自然影像翻译上，取得了良好的效果。以马与斑马影像的相互转化为例，CycleGAN的结构示意图如下所示：</p>
+<div align="center">
+  <img width="400" src="/research/SR/2.png">
+</div>
+<center>图2 CycleGAN结构示意图（图片源于CycleGAN论文）</center>
+
+<p>为进一步提高网络训练的稳定性，保证判别网络的平滑性，我们对判别网络施加梯度惩罚。</p>
+<h2 id="3-实验分析"><a href="#3-实验分析" class="headerlink" title="3.实验分析"></a>3.实验分析</h2><h3 id="3-1-实验设置"><a href="#3-1-实验设置" class="headerlink" title="3.1 实验设置"></a>3.1 实验设置</h3><p>生成网络与判别网络的相互博弈，决定了GAN体系训练的不稳定性。因此采用Adam优化器，初始学习率为0.001，训练200个轮次，获得最终的模型。</p>
+<h3 id="3-2-实验结果"><a href="#3-2-实验结果" class="headerlink" title="3.2 实验结果"></a>3.2 实验结果</h3><p>实验结果取得优于opencv锐化处理的效果，结果对比如图3所示：</p>
+<div align="center">
+  <img width="500" src="/research/SR/3.png">
+</div>
+<center>图3 结果对比图</center>
+
+<h2 id="4-目前进展"><a href="#4-目前进展" class="headerlink" title="4.目前进展"></a>4.目前进展</h2><p>对于以上获取的3037对图像，还是依赖于测试图片有一定的数据量，对于只有一张测试图的极端情况，此方法难以适用。因此目前正研究利用少量或仅一张的测试图，如何更好的实现零样本超分的问题。</p>
+
       
 
       

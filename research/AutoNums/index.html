@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>experience-待完善 | 欢迎来到张力飞的个人主页</title>
+  <title>光学水准尺图像数字化处理及其自动化读数实现 | 欢迎来到张力飞的个人主页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="experience-待完善">
+  <meta name="description" content="光学水准尺图像数字化处理及其自动化读数实现 链接张力飞, 张晓东.测绘地理信息, 2019, 44(1).  水准测量是工程测量中极其重要的部分，被广泛地应用于未知点高程值的测定工作中，具有重要的社会效益。目前用于水准测量的仪器分为数字水准仪和光学水准仪，其中数字水准仪可以实现自动化的读数，但价格比较昂贵；光学水准仪价格比较便宜，需要人工读数。针对以上问题，本文提出了利用数字图像处理技术实现光学">
+<meta property="og:type" content="website">
+<meta property="og:title" content="光学水准尺图像数字化处理及其自动化读数实现">
 <meta property="og:url" content="http://yoursite.com/research/AutoNums/index.html">
 <meta property="og:site_name" content="欢迎来到张力飞的个人主页">
+<meta property="og:description" content="光学水准尺图像数字化处理及其自动化读数实现 链接张力飞, 张晓东.测绘地理信息, 2019, 44(1).  水准测量是工程测量中极其重要的部分，被广泛地应用于未知点高程值的测定工作中，具有重要的社会效益。目前用于水准测量的仪器分为数字水准仪和光学水准仪，其中数字水准仪可以实现自动化的读数，但价格比较昂贵；光学水准仪价格比较便宜，需要人工读数。针对以上问题，本文提出了利用数字图像处理技术实现光学">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-21T12:42:10.000Z">
-<meta property="article:modified_time" content="2020-06-22T04:58:01.738Z">
+<meta property="og:image" content="http://yoursite.com/research/AutoNums/fig1.png">
+<meta property="og:image" content="http://yoursite.com/research/AutoNums/fig2.png">
+<meta property="og:image" content="http://yoursite.com/research/AutoNums/fig3.png">
+<meta property="og:image" content="http://yoursite.com/research/AutoNums/fig4.png">
+<meta property="article:published_time" content="2020-06-23T03:58:44.360Z">
+<meta property="article:modified_time" content="2020-06-23T03:58:44.360Z">
 <meta property="article:author" content="张力飞">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/research/AutoNums/fig1.png">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到张力飞的个人主页" type="application/atom+xml">
   
@@ -169,20 +176,82 @@
         
   
     <h1 class="article-title" itemprop="name">
-      experience-待完善
+      光学水准尺图像数字化处理及其自动化读数实现
     </h1>
   
 
         
         <a href="/research/AutoNums/index.html" class="archive-article-date">
-  	<time datetime="2020-06-21T12:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+  	<time datetime="2020-06-23T03:58:44.360Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p><strong>光学水准尺图像数字化处理及其自动化读数实现</strong> <a href="http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&dbname=CJFDLAST2019&filename=CHXG201901016&v=Mjc3MDFyQ1VSTE9mWStWdkZ5SGxVcnZMSmlYVGFiRzRIOWpNcm85RVlvUjhlWDFMdXhZUzdEaDFUM3FUcldNMUY=" target="_blank" rel="noopener">链接</a><br>张力飞, 张晓东.<br>测绘地理信息, 2019, 44(1).</p>
+</blockquote>
+<p>水准测量是工程测量中极其重要的部分，被广泛地应用于未知点高程值的测定工作中，具有重要的社会效益。目前用于水准测量的仪器分为数字水准仪和光学水准仪，其中数字水准仪可以实现自动化的读数，但价格比较昂贵；光学水准仪价格比较便宜，需要人工读数。针对以上问题，本文提出了利用数字图像处理技术实现光学水准尺自动读数的方法和整体处理流程。</p>
+<a id="more"></a>
+<!-- toc -->
+
+<h1 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h1><p>几何水准测量是利用仪器建立一条水平视线，然后读取视线两端的水准标尺刻划，由刻划读数差计算出标尺立尺点的高差，从而由一点的已知高程，推算另一点的高程。目前应用广泛的水准仪分为光学水准仪和数字水准仪。数字水准仪虽然具有读数客观、精度高、速度快、效率高、操作简单等优点，但成本较高。因此在小型工程中依旧采用光学水准仪进行高程测量，人为读数效率较低且易受主观误差的影响。国内外对于数字水准仪的研究颇多，多集中于条码水准尺的编码、解码，但基于光学水准仪和普通“Ｅ”形水准尺测量进行数字化自动读数的研究甚少。本文利用从光学水准仪目镜处获取的图像，结合图像处理相关技术，自动获取光学水准仪三丝读数，实现了光学水准仪的自动读数，可提高工作效率，避免人为读数误差的影响。</p>
+<h1 id="2、方法原理"><a href="#2、方法原理" class="headerlink" title="2、方法原理"></a>2、方法原理</h1><p>光学水准尺图像的数字化处理是实现光学水准仪自动读数的关键，主要处理流程是：</p>
+<blockquote>
+<ul>
+<li>(1)水准尺图像的预处理。利用安装在水准仪目镜处的摄像头获取影像，对获取的彩色水准尺影像进行灰度化处理；</li>
+<li>(2)图像去背景算法。利用提出的列间单差算法分离水准尺图像和背景图像；算法原理如图1所示：</li>
+</ul>
+</blockquote>
+<!-- <div align=center>
+
+</div> -->
+<div align="center">
+  <img width="800" src="/research/AutoNums/fig1.png">
+</div>
+<center><font size="2">图1： 灰度值矩阵列间单差竖线图</font></center>
+
+<blockquote>
+<ul>
+<li>(3)水准尺红黑面区分算法。利用通道间单差算法区分水准尺红黑面，分区Otsu算法实现水准尺二值化处理，效果如图2所示；利用双线性插值算法实现图像的缩放，效果如图3所示；</li>
+</ul>
+</blockquote>
+<!-- <div align=center>
+
+</div> -->
+<div align="center">
+  <img width="400" src="/research/AutoNums/fig2.png">
+</div>
+<center><font size="2">图2： 灰度尺经不同二值化方法处理后的图像</font></center>
+
+<!-- <div align=center>
+
+</div> -->
+<div align="center">
+  <img width="400" src="/research/AutoNums/fig3.png">
+</div>
+<center><font size="2">图3： 二值化水准尺缩放</font></center>
+
+<blockquote>
+<ul>
+<li>(4)水准尺匹配算法。利用金字塔匹配算法，将经过上述处理获得的水准尺图像与制作的二值化数字模板水准尺进行图像匹配，获得偏移系数，进而根据模板水准尺上的位置和数值的对应关系获得三丝读数，实现了水准尺读数的自动识别。匹配原理如图4所示：</li>
+</ul>
+</blockquote>
+<!-- <div align=center>
+
+</div> -->
+<div align="center">
+  <img width="400" src="/research/AutoNums/fig4.png">
+</div>
+<center><font size="2">图4： 图像匹配获取三丝读数的原理</font></center>
+
+
+<h1 id="3、实验与分析"><a href="#3、实验与分析" class="headerlink" title="3、实验与分析"></a>3、实验与分析</h1><p>利用上述处理方法可以实现光学水准尺的自动读数，实验中平均读取速度为850ms/次，而人眼读数的速度为2s/次，因此大大提高了光学水准仪的读数速度。</p>
+<p>在精度方面，本项目基于数字图像处理技术实现光学水准仪的自动读数，因此获取的图像的质量会对最终识别的读数精度产生影响。当获取的图像竖直方向的分辨率越高时，则水准仪读数的识别精度越高，但也会带来识别时间的增加，因此需要在精度和时间上做一个平衡。</p>
+<p>在成本方面，一整套电子水准测量设备价格一般在12000元左右，一整套光学水准仪大概1500元左右。本项目实现过程中需要加装一个CCD器件大概500元，因此整套设备2000元左右。与电子水准设备的12000元相比，本项目的整套设备成本较低，价格相当低廉。同时在保证自动化读数的同时，降低了测量成本，具有重要的应用价值和工程效益。</p>
+<h1 id="4、结论"><a href="#4、结论" class="headerlink" title="4、结论"></a>4、结论</h1><p>本文结果表明，通过数字图像处理算法可以较好地处理光学水准仪目镜处获取的光学水准尺影像，并针对水准尺背景分离问题，提出了列间单差的算法。因此，通过加装在光学水准仪目镜处的摄像仪器获取图像，再利用本文给出的整套算法，可以快速有效的获得光学水准仪目镜处三丝的读数，实现光学水准仪的自动读数。克服了目前电子水准仪价格高昂、光学水准仪效率低下的缺点，以低成本有效地提高工作效率。同时避免了人为读数的误差，提高了读数的精度。此外若将一个测站的数据进行自动化处理，提升的效率将更加明显，这将是本文后续完善的方向。</p>
+
       
 
       
