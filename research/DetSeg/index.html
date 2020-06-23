@@ -15,10 +15,20 @@
 <meta property="og:site_name" content="欢迎来到张力飞的个人主页">
 <meta property="og:description" content="基于深度学习的遥感影像地物目标检测和轮廓提取一体化模型 链接张晓东, 张力飞, 陈关州, 朱坤.测绘地理信息. 2019, 44(6); doi:10.14188&#x2F;j.2095-6045.2019002.  1. 简介随着遥感影像的分辨率不断提升，基于可见光遥感影像地物目标检测和轮廓提取的研究越来越受到关注。本文基于深度学习的方法提出一个利用遥感影像进行地物目标检测和轮廓提取的一体化模型，解决了">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-22T13:58:44.843Z">
-<meta property="article:modified_time" content="2020-06-22T13:58:44.843Z">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/1.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/2.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/3.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/4.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/5.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/b1.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/6.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/7.png">
+<meta property="og:image" content="http://yoursite.com/research/DetSeg/8.png">
+<meta property="article:published_time" content="2020-06-23T01:48:03.367Z">
+<meta property="article:modified_time" content="2020-06-23T01:48:03.367Z">
 <meta property="article:author" content="张力飞">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/research/DetSeg/1.png">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到张力飞的个人主页" type="application/atom+xml">
   
@@ -177,7 +187,7 @@
 
         
         <a href="/research/DetSeg/index.html" class="archive-article-date">
-  	<time datetime="2020-06-22T13:58:44.843Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+  	<time datetime="2020-06-23T01:48:03.367Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
 </a>
         
       </header>
@@ -189,64 +199,75 @@
 </blockquote>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>随着遥感影像的分辨率不断提升，基于可见光遥感影像地物目标检测和轮廓提取的研究越来越受到关注。本文基于深度学习的方法提出一个利用遥感影像进行地物目标检测和轮廓提取的一体化模型，解决了遥感影像地物目标检测和轮廓提取中繁复的手工标注和传统算法效果不佳的难题。以船舶为研究对象，在HRSC2016遥感数据集上进行验证，单类目标检测精度可以达到79.50%，4类目标检测精度为63.45%，轮廓提取精度可以达到97.40%。结果证明，提出的模型可以实现基于遥感影像的自动化、智能化的船舶目标轮廓提取。</p>
 <h2 id="2-方法原理"><a href="#2-方法原理" class="headerlink" title="2. 方法原理"></a>2. 方法原理</h2><h3 id="2-1-利用Faster-R-CNN的遥感影像地物目标检测"><a href="#2-1-利用Faster-R-CNN的遥感影像地物目标检测" class="headerlink" title="2.1 利用Faster R-CNN的遥感影像地物目标检测"></a>2.1 利用Faster R-CNN的遥感影像地物目标检测</h3><p>Faster R-CNN是一种基于区域卷积神经网络和区域推荐网络的两阶段目标检测网络。其基本技术路线是：①输入待检测图片，利用基础网络提取图片的相应特征；②在基础网络提取的特征图上，利用区域候选框网络产生一系列的候选框；③在候选框对应的特征图区域进行兴趣区域池化处理，得到相同尺度的特征。将得到的特征输入到检测模块，实现候选框的坐标回归和类别的检测。针对遥感影像，利用Faster R-CNN 进行目标检测的流程如图1所示：</p>
-<div align="center"></div>
+<!-- <div align=center></div> -->
+<div align="center">
+  <img width="450" src="/research/DetSeg/1.png">
+</div>
 
 <center>图１ 基于Faster R-CNN的遥感影像目标检测流程图</center>
 
 <h3 id="2-2-基于全卷积神经网络的遥感影像目标轮廓提取"><a href="#2-2-基于全卷积神经网络的遥感影像目标轮廓提取" class="headerlink" title="2.2 基于全卷积神经网络的遥感影像目标轮廓提取"></a>2.2 基于全卷积神经网络的遥感影像目标轮廓提取</h3><p>由于全卷积神经网络(FCN)中采用的均是卷积层，没有全连接层，因此，被称为全卷积神经网络。利用FCN实现遥感影像的基本技术路线为：①将输入的图像进行卷积操作，提取相应的特征；②利用反卷积操作将特征图与输入的原图相等大小；③对原图相等大小的特征图的通道上进行像素级别的分类，获得最终的语义分割图。针对遥感影像，利用FCN进行像素级分类和地物轮廓提取的流程，如图2所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="450" src="/research/DetSeg/2.png">
+</div>
 
 <center>图2 基于FCN的遥感影像语义分割流程图</center>
 
 <h3 id="2-3-遥感影像目标检测和轮廓提取一体化"><a href="#2-3-遥感影像目标检测和轮廓提取一体化" class="headerlink" title="2.3 遥感影像目标检测和轮廓提取一体化"></a>2.3 遥感影像目标检测和轮廓提取一体化</h3><p>以目标检测和轮廓提取结果为基础，提出一种遥感影像的目标检测和轮廓提取一体化流程：①根据Faster R-CNN的检测结果，主要是目标框的坐标信息，在经过FCN处理后的分割图中获得对应区域的分割图；②将获得的对应区域的分割图与目标检测结果图的对应区域进行融合，得到最终的目标检测和轮廓提取结果，如图3所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="450" src="/research/DetSeg/3.png">
+</div>
 
 <center>图3 目标检测和轮廓提取一体化流程图</center>
 
 <h2 id="3-实验及分析"><a href="#3-实验及分析" class="headerlink" title="3. 实验及分析"></a>3. 实验及分析</h2><p>实验数据集是HRSC2016数据集。数据集中的遥感影像来源于谷歌地球，为高分可见光影像，具有较为单一的背景，一般为海面或海港，其空间分辨率为0.4-2m，图像大小300x300至1500x900像素，总共包含1680张影像。</p>
 <p>其中采用的Faster R-CNN网络结构如图4所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/4.png">
+</div>
 
 <center>图4 Faster R-CNN网络结构图</center>
 
 <p>FCN网络结构如图5所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/5.png">
+</div>
 
 <center>图5 FCN网络结构图</center>
 
 <p>Faster R-CNN网络实现遥感影像的检测精度如表1所示：</p>
 <center>表1 一级和二级类别检测结果精度评定</center>
 
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/b1.png">
+</div>
 
 <p>部分检测示例如图6所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/6.png">
+</div>
 
 <center>图6 Faster R-CNN船舶检测结果示例图</center>
 
 <p>FCN实现遥感船舶分割的示例图如图7所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/7.png">
+</div>
 
 <center>图7 FCN船舶分割示例图</center>
 
 <p>其中利用Faster R-CNN和FCN实现遥感影像船舶检测和轮廓提取一体化过程如图8所示：</p>
+<!-- <div align=center></div>  -->
 <div align="center">
-
-</div> 
+  <img width="400" src="/research/DetSeg/8.png">
+</div>
 
 <center>图8 船舶检测和轮廓提取一体化模型处理示意图</center>
 
