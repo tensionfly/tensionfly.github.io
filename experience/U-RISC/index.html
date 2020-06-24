@@ -8,16 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Biendata：U-RISC 神经元识别大赛复杂赛道 | 欢迎来到张力飞的个人主页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 赛题分析1.1 赛题任务利用图像算法提取电子显微镜下的细胞边界。 1.2 数据介绍训练数据为公开数据集DIV2K、Flickr2K 总共3550张高清图像，如图1所示：      图１ 高清训练数据示例图">
+  <meta name="description" content="1. 赛题分析1.1 赛题任务利用图像算法提取电子显微镜下的细胞边界。 1.2 数据介绍训练数据为20张分辨率为9958x9959的电子显微镜下拍摄的图片，以及相应的标签图，如图1所示：      图１ 训练样本及标签示例图（图片源于比赛） 测试数据为10张同样分辨率大小的电子显微镜下拍摄的细胞图像。  1.3 挑战及难点 对于大图如何进行训练及预测 细胞边界占图像很少一部分，如何解决类别极度不均">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Biendata：U-RISC 神经元识别大赛复杂赛道">
 <meta property="og:url" content="http://yoursite.com/experience/U-RISC/index.html">
 <meta property="og:site_name" content="欢迎来到张力飞的个人主页">
-<meta property="og:description" content="1. 赛题分析1.1 赛题任务利用图像算法提取电子显微镜下的细胞边界。 1.2 数据介绍训练数据为公开数据集DIV2K、Flickr2K 总共3550张高清图像，如图1所示：      图１ 高清训练数据示例图">
+<meta property="og:description" content="1. 赛题分析1.1 赛题任务利用图像算法提取电子显微镜下的细胞边界。 1.2 数据介绍训练数据为20张分辨率为9958x9959的电子显微镜下拍摄的图片，以及相应的标签图，如图1所示：      图１ 训练样本及标签示例图（图片源于比赛） 测试数据为10张同样分辨率大小的电子显微镜下拍摄的细胞图像。  1.3 挑战及难点 对于大图如何进行训练及预测 细胞边界占图像很少一部分，如何解决类别极度不均">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/experience/U-RISC/1.png">
+<meta property="og:image" content="http://yoursite.com/experience/U-RISC/2.png">
+<meta property="og:image" content="http://yoursite.com/experience/U-RISC/3.png">
 <meta property="article:published_time" content="2020-02-17T14:48:49.000Z">
-<meta property="article:modified_time" content="2020-06-24T02:52:56.027Z">
+<meta property="article:modified_time" content="2020-06-24T05:27:38.641Z">
 <meta property="article:author" content="张力飞">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/experience/U-RISC/1.png">
@@ -187,11 +189,38 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-赛题分析"><a href="#1-赛题分析" class="headerlink" title="1. 赛题分析"></a>1. 赛题分析</h2><h3 id="1-1-赛题任务"><a href="#1-1-赛题任务" class="headerlink" title="1.1 赛题任务"></a>1.1 赛题任务</h3><p>利用图像算法提取电子显微镜下的细胞边界。</p>
-<h3 id="1-2-数据介绍"><a href="#1-2-数据介绍" class="headerlink" title="1.2 数据介绍"></a>1.2 数据介绍</h3><p>训练数据为公开数据集DIV2K、Flickr2K 总共3550张高清图像，如图1所示：</p>
+<h3 id="1-2-数据介绍"><a href="#1-2-数据介绍" class="headerlink" title="1.2 数据介绍"></a>1.2 数据介绍</h3><p>训练数据为20张分辨率为9958x9959的电子显微镜下拍摄的图片，以及相应的标签图，如图1所示：</p>
 <div align="center">
-  <img width="400" src="/experience/U-RISC/1.png">
+  <img width="600" src="/experience/U-RISC/1.png">
 </div>
-<center>图１ 高清训练数据示例图</center>
+<center>图１ 训练样本及标签示例图（图片源于比赛）</center>
+测试数据为10张同样分辨率大小的电子显微镜下拍摄的细胞图像。
+
+<h3 id="1-3-挑战及难点"><a href="#1-3-挑战及难点" class="headerlink" title="1.3 挑战及难点"></a>1.3 挑战及难点</h3><ul>
+<li><font face="微软雅黑" color="black" size="3">对于大图如何进行训练及预测</font></li>
+<li><font face="微软雅黑" color="black" size="3">细胞边界占图像很少一部分，如何解决类别极度不均衡问题</font></li>
+</ul>
+<h2 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2. 解决方案"></a>2. 解决方案</h2><h3 id="2-1-方案创新点"><a href="#2-1-方案创新点" class="headerlink" title="2.1 方案创新点"></a>2.1 方案创新点</h3><ul>
+<li><font face="微软雅黑" color="black" size="3">有重叠滑动窗口固定大小裁剪，解决大图训练预测难点</font></li>
+<li><font face="微软雅黑" color="black" size="3">动态加权二元交叉熵，缓解类别极度不均衡问题</font></li>
+<li><font face="微软雅黑" color="black" size="3">引入生成对抗网络，提升标签图的生成质量</font></li>
+</ul>
+<h3 id="2-2-方案介绍"><a href="#2-2-方案介绍" class="headerlink" title="2.2 方案介绍"></a>2.2 方案介绍</h3><h4 id="2-2-1-有重叠滑动窗口固定大小裁剪"><a href="#2-2-1-有重叠滑动窗口固定大小裁剪" class="headerlink" title="2.2.1 有重叠滑动窗口固定大小裁剪"></a>2.2.1 有重叠滑动窗口固定大小裁剪</h4><p>1）训练：训练时对训练图片及相应的标签图进行大小为512x512，重叠度为128x128的离线滑动窗口裁剪，获得1620张512x512的训练样本。<br>2）测试：测试时对测试图进行相同大小和重叠度的在线滑动窗口裁剪，将滑动窗口预测概率分布加权拼接获得整张图的概率分布结果，在通道上取argmax，获得整图预测结果。</p>
+<h4 id="2-2-2-网络结构"><a href="#2-2-2-网络结构" class="headerlink" title="2.2.2 网络结构"></a>2.2.2 网络结构</h4><p>网络采用UNet++，判别网络采用VGG结构。</p>
+<h4 id="2-2-3-动态加权二元交叉熵"><a href="#2-2-3-动态加权二元交叉熵" class="headerlink" title="2.2.3 动态加权二元交叉熵"></a>2.2.3 动态加权二元交叉熵</h4><p>统计一个批次中每个类别所占的比例，细胞边界为a，则非细胞边界为(1-a)，具体计算公式如下所示：</p>
+<div align="center">
+  <img width="500" src="/experience/U-RISC/2.png">
+</div>
+
+<h4 id="2-2-4-训练策略"><a href="#2-2-4-训练策略" class="headerlink" title="2.2.4 训练策略"></a>2.2.4 训练策略</h4><p>训练中采用多尺度训练，训练主要分为以下两个部分：<br>1）首先仅采用动态加权二元交叉熵对模型进行优化，获得初始模型<br>2）引入对抗损失，对初始模型进行继续优化，获得最终模型</p>
+<h4 id="2-2-5-预测策略"><a href="#2-2-5-预测策略" class="headerlink" title="2.2.5 预测策略"></a>2.2.5 预测策略</h4><p>预测采用多尺度、翻转、旋转、镜像预测，采用均值处理融合预测结果，获得最终的预测图。结果示例如图2所示：</p>
+<div align="center">
+  <img width="500" src="/experience/U-RISC/3.png">
+</div>
+<center>图2 预测结果示例图（样本图片源于比赛）</center>
+
+<h2 id="3-比赛结果"><a href="#3-比赛结果" class="headerlink" title="3. 比赛结果"></a>3. 比赛结果</h2><p>使用此方案最终取得初赛17/380，决赛7/380。</p>
+
       
 
       
